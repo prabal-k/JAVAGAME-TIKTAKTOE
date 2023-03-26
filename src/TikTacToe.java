@@ -13,6 +13,8 @@ public class TikTacToe implements ActionListener {
 
     JButton[] buttons = new JButton[9];
     Random random = new Random();
+    JTextField txt = new JTextField();
+    JPanel panel2 = new JPanel();
     int turn, k = 0;
 
     TikTacToe()                                                    //CONSTRUCTOR
@@ -55,7 +57,7 @@ public class TikTacToe implements ActionListener {
         for (int i = 0; i < 9; i++) {
             buttons[i] = new JButton();
             button_panel.add(buttons[i]);
-            buttons[i].setBackground(new Color(0, 50, 50));
+            buttons[i].setBackground(Color.darkGray);
             buttons[i].setFocusable(false);
 
         }
@@ -76,7 +78,7 @@ public class TikTacToe implements ActionListener {
                 if (turn == 0) {
                    if (buttons[i].getText() == "") {                                                      //IT DOES NOT LET TO OVERWRITE THE PREVIOUS VALUE
                         buttons[i].setText("O");
-                        buttons[i].setForeground(new Color(0,0,0));
+                        buttons[i].setForeground(Color.BLUE);
 
                         buttons[i].setFont(new Font("Inkfree", Font.ITALIC, 120));
                         textfield.setText("X'S turn");
@@ -88,7 +90,7 @@ public class TikTacToe implements ActionListener {
                         buttons[i].setText("X");
                     buttons[i].setFont(new Font("Inkfree", Font.ITALIC, 120));
                     textfield.setText("O'S turn");
-                    buttons[i].setForeground(new Color(2,3,80,255));
+                    buttons[i].setForeground(Color.RED);
                     turn = 0;
                     check();
                 }
@@ -97,20 +99,99 @@ public class TikTacToe implements ActionListener {
     }
     void check()
     {
+        //CONDITION FOR X WINS
         if(buttons[0].getText()=="X"&&buttons[1].getText()=="X"&&buttons[2].getText()=="X")
             {
                 x_wins();
             }
+        if(buttons[3].getText()=="X"&&buttons[4].getText()=="X"&&buttons[5].getText()=="X")
+        {
+            x_wins();
+        }
+        if(buttons[6].getText()=="X"&&buttons[7].getText()=="X"&&buttons[8].getText()=="X")
+        {
+            x_wins();
+        }
+        if(buttons[0].getText()=="X"&&buttons[3].getText()=="X"&&buttons[6].getText()=="X")
+        {
+            x_wins();
+        }
+        if(buttons[1].getText()=="X"&&buttons[4].getText()=="X"&&buttons[7].getText()=="X")
+        {
+            x_wins();
+        }
+        if(buttons[2].getText()=="X"&&buttons[5].getText()=="X"&&buttons[8].getText()=="X")
+        {
+            x_wins();
+        }
+        if(buttons[0].getText()=="X"&&buttons[4].getText()=="X"&&buttons[8].getText()=="X")
+        {
+            x_wins();
+        }
+        if(buttons[2].getText()=="X"&&buttons[4].getText()=="X"&&buttons[6].getText()=="X")
+        {
+            x_wins();
+        }
+
+
+        //CONDITION FOR Y WINS
+        if(buttons[0].getText()=="O"&&buttons[1].getText()=="O"&&buttons[2].getText()=="O")
+        {
+            y_wins();
+        }
+        if(buttons[3].getText()=="O"&&buttons[4].getText()=="O"&&buttons[5].getText()=="O")
+        {
+            y_wins();
+        }
+        if(buttons[6].getText()=="O"&&buttons[7].getText()=="O"&&buttons[8].getText()=="O")
+        {
+            y_wins();
+        }
+        if(buttons[0].getText()=="O"&&buttons[3].getText()=="O"&&buttons[6].getText()=="O")
+        {
+            y_wins();
+        }
+        if(buttons[1].getText()=="O"&&buttons[4].getText()=="O"&&buttons[7].getText()=="O")
+        {
+            y_wins();
+        }
+        if(buttons[2].getText()=="O"&&buttons[5].getText()=="O"&&buttons[8].getText()=="O")
+        {
+            y_wins();
+        }
+        if(buttons[0].getText()=="O"&&buttons[4].getText()=="O"&&buttons[8].getText()=="O")
+        {
+            y_wins();
+        }
+        if(buttons[2].getText()=="O"&&buttons[4].getText()=="O"&&buttons[6].getText()=="O")
+        {
+            y_wins();
+        }
+
+
 
     }
     void x_wins()
     {
-        textfield.setText("X wins");
+        textfield.setText("X'S wins");
         for(int i=0;i<9;i++)
         {
+            buttons[i].setBackground(Color.RED);
             buttons[i].setEnabled(false);
         }
+
     }
+    void y_wins()
+    {
+        textfield.setText("O'S wins");
+        for(int i=0;i<9;i++)
+        {
+            buttons[i].setBackground(Color.BLUE);
+            buttons[i].setEnabled(false);
+        }
+
+    }
+
 
 
     void first_turn()
